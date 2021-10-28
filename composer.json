@@ -1,0 +1,23 @@
+{
+  "name": "devcompru/db",
+  "description": "Basic DB",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dmitriy Evseev",
+      "email": "dev@devcomp.ru"
+    }
+  ],
+  "require": {
+    "php": "8.*"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Devcompru\\DB\\": "src"
+    }
+  }
+}
