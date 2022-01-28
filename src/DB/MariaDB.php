@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 namespace Devcompru\DB\DB;
 
-class MariaDB
+use Devcompru\DB\Connection;
+
+class MariaDB extends Connection
 {
 
 
 
+    
 
 
 }

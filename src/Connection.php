@@ -35,7 +35,7 @@ class Connection
     public function connect(): Connection
     {
         $dsn = "mysql:host={$this->_config['hostname']};dbname={$this->_config['database']};charset={$this->_config['charset']}";
-
+        //MOX($dsn);
         $opt = [
             PDO::ATTR_PERSISTENT         => true,
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -49,11 +49,11 @@ class Connection
         catch (PDOException $e) {
             throw new Exception($e->getMessage(), $e->getCode());
         }
-
+        unset($this->_config);
         return $this;
 
     }
-    public function query($sql, $params = [])
+    public function query($sql, $params = []):static
     {
 
 
@@ -71,6 +71,7 @@ class Connection
             return $fetch = $this->_statement->fetch($fetch_mode);
 
         $fetch = $this->_statement->fetch();
+
         return $fetch;
     }
     public function fetchAll($object = null, $fetch_mode = false)
@@ -84,7 +85,24 @@ class Connection
         return $fetch = $this->_statement->fetchAll();
 
     }
+    public function statement():PDOStatement
+    {
+        return $this->_statement;
 
+    }
+    public function pdo():PDO
+    {
+        return $this->_pdo;
+
+    }
+    public function rows()
+    {
+        return $this->_statement->rowCount();
+    }
+    public function lastID()
+    {
+        return $this->_pdo->lastInsertId();
+    }
 
 
 }
